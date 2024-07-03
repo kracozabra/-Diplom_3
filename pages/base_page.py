@@ -1,17 +1,13 @@
 import allure
 from selenium.common import TimeoutException
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from seletools.actions import drag_and_drop
 import config
+import locators
 
 
 class BasePage:
-
-    _PERSONAL_ACCOUNT_LINK = [By.XPATH, "//header//p[text()='Личный Кабинет']"]
-    _CONSTRUCTOR_LINK = [By.XPATH, "//header//p[text()='Конструктор']"]
-    _ORDER_FEED_LINK = [By.XPATH, "//header//p[text()='Лента Заказов']"]
 
     def __init__(self, driver):
         self.driver = driver
@@ -140,12 +136,12 @@ class BasePage:
 
     @allure.step('Кликаем по ссылке личного профиля')
     def click_personal_account_link(self):
-        self.click_element(self._PERSONAL_ACCOUNT_LINK)
+        self.click_element(locators.PERSONAL_ACCOUNT_LINK)
 
     @allure.step('Кликаем по ссылке "Конструктор"')
     def click_constructor_link(self):
-        self.click_element(self._CONSTRUCTOR_LINK)
+        self.click_element(locators.CONSTRUCTOR_LINK)
 
     @allure.step('Кликаем по ссылке "Лента заказов"')
     def click_order_feed_link(self):
-        self.click_element(self._ORDER_FEED_LINK)
+        self.click_element(locators.ORDER_FEED_LINK)
