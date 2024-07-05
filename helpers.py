@@ -10,7 +10,7 @@ GET_CHANGE_USER_INFO = URL + '/api/auth/user'
 CREATE_ORDER_ENDPOINT = URL + '/api/orders'
 GET_INGREDIENTS = URL + '/api/ingredients'
 
-# Дополнитлельная информация для запросов
+# Дополнительная информация для запросов
 headers_json = {"Content-type": "application/json"}
 
 

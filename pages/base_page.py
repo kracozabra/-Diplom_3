@@ -27,7 +27,7 @@ class BasePage:
         if element:
             return element.text
         else:
-            print(f'Не получилось получить текст жлемента с локатором {locator}')
+            print(f'Не получилось получить текст элемента с локатором {locator}')
             return None
 
     def scroll_to_element(self, locator, timeout=5):
@@ -53,7 +53,7 @@ class BasePage:
         else:
             print(f'Ошибка при попытке ввода текста в элемент с локатором {locator}')
 
-    def wait_for_element_visible(self, locator, timeout=5):
+    def wait_for_element_visible(self, locator, timeout=7):
         try:
             WebDriverWait(self.driver, timeout).until(expected_conditions.visibility_of_element_located(locator))
         except TimeoutException:

@@ -59,8 +59,8 @@ class TestMainFunctions:
         assert main_page.check_ingredient_counter_equals_2()
 
     @allure.title('Оформление заказа')
-    def test_create_order(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_create_order(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -70,5 +70,3 @@ class TestMainFunctions:
         main_page.wait_for_order_form()
 
         assert main_page.check_visibility_order_form
-
-        helpers.delete_user_by_token(user["token"])

@@ -8,8 +8,8 @@ from pages.personal_account_page import PersonalAccountPage
 class TestPersonalAccount:
 
     @allure.title('Проверка перехода на страницу персонального профиля')
-    def test_navigate_to_personal_account(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_navigate_to_personal_account(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -20,11 +20,9 @@ class TestPersonalAccount:
 
         assert current_url == config.PERSONAL_ACCOUNT_URL
 
-        helpers.delete_user_by_token(user["token"])
-
     @allure.title('Переход в раздел "История заказов"')
-    def test_navigate_to_order_history(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_navigate_to_order_history(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -36,11 +34,9 @@ class TestPersonalAccount:
 
         assert current_url == config.ORDER_HISTORY_URL
 
-        helpers.delete_user_by_token(user["token"])
-
     @allure.title('Выход из аккаунта')
-    def test_exit_from_account(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_exit_from_account(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -52,5 +48,3 @@ class TestPersonalAccount:
         current_url = personal_account_page.get_current_url()
 
         assert current_url == config.LOGIN_URL
-
-        helpers.delete_user_by_token(user["token"])

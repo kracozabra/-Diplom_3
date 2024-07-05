@@ -19,8 +19,8 @@ class TestOrderFeed:
         assert order_feed_page.check_order_details_popup_visible()
 
     @allure.title('Проверка что заказы  из раздела «История заказов» отображаются на странице «Лента заказов»')
-    def test_orders_from_history_displayed_on_order_feed(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_orders_from_history_displayed_on_order_feed(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
         helpers.create_order(user["token"])
 
         login_page = LoginPage(driver)
@@ -37,11 +37,9 @@ class TestOrderFeed:
 
         assert order_feed_page.find_order_by_id(order_id)
 
-        helpers.delete_user_by_token(user["token"])
-
     @allure.title('Проверка что при создании нового заказа счётчик "Выполнено за всё время" увеличивается')
-    def test_increase_counter_orders_all_time(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_increase_counter_orders_all_time(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -57,11 +55,9 @@ class TestOrderFeed:
 
         assert counter_before < counter_after
 
-        helpers.delete_user_by_token(user["token"])
-
     @allure.title('Проверка что при создании нового заказа счётчик "Выполнено за сегодня" увеличивается')
-    def test_increase_counter_orders_today(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_increase_counter_orders_today(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -77,11 +73,9 @@ class TestOrderFeed:
 
         assert counter_before < counter_after
 
-        helpers.delete_user_by_token(user["token"])
-
     @allure.title('Проверка что после оформления заказа его номер появляется в разделе "В работе"')
-    def test_order_is_displayed_in_work(self, driver):
-        user = helpers.register_new_user_and_return_login_password_token()
+    def test_order_is_displayed_in_work(self, driver, register_return_login_password_token_delete_user):
+        user = register_return_login_password_token_delete_user
 
         login_page = LoginPage(driver)
         login_page.set_email_password_and_login(user["email"], user["password"])
@@ -89,9 +83,7 @@ class TestOrderFeed:
         order_feed_page.click_order_feed_link()
         order_feed_page.wait_for_load_order_list()
         order_id = '0' + str(helpers.create_order(user["token"]))
-        order_in_work_id = order_feed_page.get_order_in_work_id()
         order_feed_page.wait_for_order_in_work_appears()
+        order_in_work_id = order_feed_page.get_order_in_work_id()
 
         assert order_in_work_id == order_id
-
-        helpers.delete_user_by_token(user["token"])

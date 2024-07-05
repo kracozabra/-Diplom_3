@@ -48,7 +48,7 @@ class MainPage(BasePage):
     def drag_and_drop_ingredients(self, driver):
         self.drag_drop_elements(driver, locators.INGREDIENT, locators.BASKET_AREA)
 
-    @allure.step('Провереряем, что на счетчике ингредиента стоит знаечние "2"')
+    @allure.step('Провереряем, что на счетчике ингредиента стоит значение "2"')
     def check_ingredient_counter_equals_2(self):
         return self.element_is_present(locators.INGREDIENT_COUNTER2)
 

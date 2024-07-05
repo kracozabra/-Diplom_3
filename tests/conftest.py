@@ -1,9 +1,13 @@
 import pytest
+import requests
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
+
+import helpers
+from helpers import generate_random_user_data
 
 
 # Помогает корректно выводить символы кириллицы в консоли PyCharm
@@ -27,3 +31,10 @@ def driver(request):
     driver = _get_driver(request.param)
     yield driver
     driver.quit()
+
+
+@pytest.fixture
+def register_return_login_password_token_delete_user():
+    user = helpers.register_new_user_and_return_login_password_token()
+    yield user
+    helpers.delete_user_by_token(user["token"])

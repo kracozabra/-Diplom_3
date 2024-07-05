@@ -48,4 +48,4 @@ class OrderFeedPage(BasePage):
 
     @allure.step('Ждем пока исчезнет надпись "Все текущие заказы готовы!"')
     def wait_for_order_in_work_appears(self):
-        self.wait_for_element_invisible(locators.NO_ORDERS_IN_WORK)
+        self.wait_for_element_visible(locators.ORDER_IN_WORK_NOW)

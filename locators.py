@@ -45,7 +45,7 @@ ORDER_LIST_ITEM_ID_XPATH = "//ul[contains(@class, 'OrderFeed_list')]/li//p[text(
 COUNT_ORDERS_ALL_TIME = [By.XPATH, "//p[text()='Выполнено за все время:']/../p[2]"]
 COUNT_ORDERS_TODAY = [By.XPATH, "//p[text()='Выполнено за сегодня:']/../p[2]"]
 ORDER_IN_WORK = [By.XPATH, "//ul[contains(@class, 'orderListReady')]/li"]
-NO_ORDERS_IN_WORK = [By.XPATH, "//ul[contains(@class, 'orderListReady')]/li[text()='Все текущие заказы готовы!']"]
+ORDER_IN_WORK_NOW = [By.XPATH, "//ul[contains(@class, 'orderListReady')]/li[not(text()='Все текущие заказы готовы!')]"]
 
 # Локаторы для класса OrderHistoryPage
 ORDER_HISTORY_LIST = [By.XPATH, "//ul[contains(@class, 'OrderHistory_profileList')]"]
