@@ -1,6 +1,5 @@
 import allure
 import config
-import helpers
 from pages.login_page import LoginPage
 from pages.personal_account_page import PersonalAccountPage
 
