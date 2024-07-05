@@ -1,0 +1,1 @@
+Элемент с локатором ['xpath', "//ul[contains(@class, 'OrderFeed_list')]"] не найден спустя 7 секунд
